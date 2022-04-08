@@ -1,0 +1,63 @@
+spring:
+  profiles:
+    active: test
+
+---
+spring:
+  profiles: dev
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost/CODE_BUFFER
+    password: *
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
+welcome:
+  message: Hello world!!
+
+---
+spring:
+  profiles: test
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost/CODE_BUFFER_TEST
+    password: *
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+management:
+    endpoints:
+      web:
+        exposures:
+          include: "*"
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost/CODE_BUFFER_PROD
+    password: *
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
